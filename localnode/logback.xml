@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration debug="false" scan="true" scanPeriod="3600 seconds">
+    <!-- Errors were reported during translation. -->
+    <!-- Could not find transformer for org.apache.log4j.rolling.RollingFileAppender -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd-HH:mm:ss.SSSS} %p [%c{1}]  %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="FILE-AUDIT"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/var/log/rsk/rsk.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %date{yyyy-MM-dd-HH:mm:ss.SSS} %p [%c{1}]  %m%n
+            </Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>/var/log/rsk/rskj-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="messagehandler" level="OFF"/>
+    <logger name="messageProcessor" level="OFF"/>
+    <logger name="messageProcess" level="INFO"/>
+    <logger name="fullnoderunner" level="OFF"/>
+    <logger name="c.g.j.JsonRpcBasicServer" level="OFF"/>
+    <logger name="execute" level="OFF"/>
+    <logger name="org.ethereum.core.Transaction" level="OFF"/>
+    <logger name="general" level="OFF"/>
+    <logger name="config" level="OFF"/>
+    <logger name="gaspricetracker" level="OFF"/>
+    <logger name="blockvalidator" level="OFF"/>
+    <logger name="minerserver" level="OFF"/>
+    <logger name="minerClient" level="OFF"/>
+    <logger name="net" level="OFF"/>
+    <logger name="blocktominebuilder" level="OFF"/>
+    <logger name="co.rsk.bitcoinj.core.Context" level="OFF"/>
+    <logger name="blockchain" level="INFO"/>
+    <logger name="com.googlecode.jsonrpc4j.JsonRpcBasicServer" level="OFF"/>
+    <logger name="sync" level="OFF"/>
+    <logger name="web3" level="TRACE"/>
+    <logger name="txbuilderex" level="TRACE"/>
+    <logger name="txbuilder" level="TRACE"/>
+    <logger name="txpool" level="OFF"/>
+    <logger name="co.rsk.remasc.Remasc" level="OFF"/>
+    <logger name="txpendingvalidator" level="OFF"/>
+    <logger name="txvalidator" level="OFF"/>
+
+    <logger name="blockrecorder" level="TRACE"/>
+    <logger name="blockexecutor" level="INFO"/>
+    <logger name="repository" level="ERROR"/>
+    <logger name="contractdetails" level="ERROR"/>
+    <logger name="VM" level="ERROR"/>
+    <logger name="blockqueue" level="TRACE"/>
+    <logger name="prune" level="TRACE"/>
+    <logger name="io.netty" level="ERROR"/>
+    <logger name="block" level="ERROR"/>
+    <logger name="pendingstate" level="TRACE"/>
+    <logger name="hsqldb.db" level="ERROR"/>
+    <logger name="TCK-Test" level="TRACE"/>
+    <logger name="db" level="ERROR"/>
+    <logger name="start" level="TRACE"/>
+    <logger name="cli" level="ERROR"/>
+    <logger name="txs" level="ERROR"/>
+    <logger name="gas" level="ERROR"/>
+    <logger name="main" level="ERROR"/>
+    <logger name="trie" level="ERROR"/>
+    <logger name="peermonitor" level="ERROR"/>
+    <logger name="bridge" level="TRACE"/>
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="rlp" level="ERROR"/>
+    <logger name="syncprocessor" level="TRACE"/>
+    <logger name="BtcToRskClient" level="TRACE"/>
+    <logger name="ui" level="ERROR"/>
+    <logger name="java.nio" level="ERROR"/>
+    <logger name="org.eclipse.jetty" level="ERROR"/>
+    <logger name="wire" level="ERROR"/>
+    <logger name="BridgeSupport" level="TRACE"/>
+    <logger name="jsonrpc" level="TRACE"/>
+    <logger name="wallet" level="TRACE"/>
+    <logger name="blockprocessor" level="TRACE"/>
+    <logger name="blocksyncservice" level="TRACE"/>
+    <logger name="syncprocessor" level="TRACE"/>
+    <logger name="state" level="TRACE"/>
+    <logger name="org.bitcoinj" level="INFO"/>
+    <logger name="metrics" level="INFO"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="FILE-AUDIT"/>
+    </root>
+</configuration>
